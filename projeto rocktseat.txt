@@ -1,0 +1,10 @@
+named exported, exportar direto no app, assim voce pode passar o nome
+que quiser, porem voce tem que especificalo no main.tsx
+(export defalt App)
+
+tailwind, biblioteca que permite aplicar o css atraves de classes
+
+disabled={janelaDeConvidadoAberta} - vai desabilitar o input quando o useState
+for true
+
+codigo, useState e funçoes bem alinhadinhos e faceis de ler
