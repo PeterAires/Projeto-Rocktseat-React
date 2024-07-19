@@ -2,11 +2,17 @@ import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2, X, AtSign, Plus
 import { useState } from 'react'
 
 export function App() {
+  type User ={
+    id: number,
+    email: string
+  }
+
   const [janelaDeConvidadoAberta,setJanelaDeConvidadoAberta] = useState(false)
   const [janelaDeConvidadoModalAberta,setJanelaConvidadoModalAberta] = useState(false)
-  const [emailsParaEnviar,setEmailsParaEnviar] = useState([
-    'peteraires@gmail.com'
-  ])
+  const [emailsParaEnviar,setEmailsParaEnviar] = useState<User[]>([{
+    id: Math.floor(Math.random() * 10000),
+    email: 'peteraires@gmail.com'
+  }])
   const[email,setEmail] = useState('')
 
 
@@ -27,7 +33,10 @@ export function App() {
 
   function AdicionarEmail(e:any) {
     e.preventDefault()
-      const novoEmail = [...emailsParaEnviar, `${email}`]
+      const novoEmail = [...emailsParaEnviar, {
+        id: Math.floor(Math.random() * 10000),
+        email: `${email}`
+      }]
     setEmailsParaEnviar(novoEmail)  
     setEmail('')
   }
@@ -102,8 +111,8 @@ export function App() {
             </div>
             <div className='flex flex-wrap gap-2'>
               {emailsParaEnviar.map((index) => (
-                <div className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>{index}</span>
+                <div key={index.id} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
+                <span className='text-zinc-300'>{index.email}</span>
                 <button type='button'>
                   <X className='size-4 text-zinc-400'/>
                 </button>
