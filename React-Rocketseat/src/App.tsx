@@ -1,20 +1,13 @@
 import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2, X, AtSign, Plus} from 'lucide-react'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 export function App() {
-  type User ={
-    id: number,
-    email: string
-  }
 
   const [janelaDeConvidadoAberta,setJanelaDeConvidadoAberta] = useState(false)
   const [janelaDeConvidadoModalAberta,setJanelaConvidadoModalAberta] = useState(false)
-  const [emailsParaEnviar,setEmailsParaEnviar] = useState<User[]>([{
-    id: Math.floor(Math.random() * 10000),
-    email: 'peteraires@gmail.com'
-  }])
-  const[email,setEmail] = useState('')
-
+  const [emailsParaEnviar,setEmailsParaEnviar] = useState([    
+     'peteraires@gmail.com'
+  ])
 
   function abrirJanelaDeConvidados(){
     setJanelaDeConvidadoAberta(true)
@@ -31,14 +24,32 @@ export function App() {
     setJanelaConvidadoModalAberta(false)
   }
 
-  function AdicionarEmail(e:any) {
-    e.preventDefault()
-      const novoEmail = [...emailsParaEnviar, {
-        id: Math.floor(Math.random() * 10000),
-        email: `${email}`
-      }]
-    setEmailsParaEnviar(novoEmail)  
-    setEmail('')
+  function AdicionarEmail(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    
+    const dados = new FormData(event.currentTarget)
+    const email = dados.get('email')?.toString()
+
+    if (!email) {
+        return
+      }
+
+    if (emailsParaEnviar.includes(email)) {
+      return
+    }
+
+    setEmailsParaEnviar([
+      ...emailsParaEnviar,
+      email
+    ])
+
+    event.currentTarget.reset()
+  }
+
+  function RemoverEmailsDoInvite(emailToRemove:string){
+    const novalistadeEmail = emailsParaEnviar.filter(email => email !== emailToRemove)
+
+    setEmailsParaEnviar(novalistadeEmail)
   }
 
   return (
@@ -110,10 +121,10 @@ export function App() {
             </p>
             </div>
             <div className='flex flex-wrap gap-2'>
-              {emailsParaEnviar.map((index) => (
-                <div key={index.id} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
-                <span className='text-zinc-300'>{index.email}</span>
-                <button type='button'>
+              {emailsParaEnviar.map((email) => (
+                <div key={email} className='py-1.5 px-2.5 rounded-md bg-zinc-800 flex items-center gap-2'>
+                <span className='text-zinc-300'>{email}</span>
+                <button type='button' onClick={() => RemoverEmailsDoInvite(email)}>
                   <X className='size-4 text-zinc-400'/>
                 </button>
               </div>
@@ -125,7 +136,12 @@ export function App() {
             <form onSubmit={AdicionarEmail} className='p-2.5 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
               <div className='px-2 flex items-center flex-1 gap-2'>
               <AtSign className='text-zinc-400 size-5'/>
-              <input onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Digite o e-mail do convidado." className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
+
+              <input
+                type="email"
+                name='email'
+                placeholder="Digite o e-mail do convidado."
+                className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
               </div>
               <button type='submit' className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
                 Convidar<Plus className='size-5 '/>
