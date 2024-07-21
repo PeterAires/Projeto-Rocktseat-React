@@ -34,7 +34,7 @@ export function App() {
         return
       }
 
-    if (emailsParaEnviar.includes(email)) {
+    if (emailsParaEnviar.includes(email)) { //se ja tiver o email que on cara clikou no array ele retorna
       return
     }
 
