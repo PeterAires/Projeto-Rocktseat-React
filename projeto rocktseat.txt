@@ -8,3 +8,7 @@ disabled={janelaDeConvidadoAberta} - vai desabilitar o input quando o useState
 for true
 
 codigo, useState e funçoes bem alinhadinhos e faceis de ler
+
+criar um componente com o nome de div so par poder estiliza-lo
+
+alguns metodos que tem no codigo

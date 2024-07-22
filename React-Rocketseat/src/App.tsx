@@ -184,7 +184,11 @@ export function App() {
             <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
             <User className='text-zinc-400 size-5'/>
             <input
+<<<<<<< HEAD
               name='name'
+=======
+              name='email'
+>>>>>>> 1fc2949182e155dfb4cc74f3460dd0a47544df51
               placeholder="Seu nome completo"
               className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
             </div>
@@ -192,8 +196,12 @@ export function App() {
             <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
             <User className='text-zinc-400 size-5'/>
             <input
+<<<<<<< HEAD
               type='email'
               name='email'
+=======
+              name='name'
+>>>>>>> 1fc2949182e155dfb4cc74f3460dd0a47544df51
               placeholder="Seu email"
               className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
             </div>
