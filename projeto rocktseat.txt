@@ -12,3 +12,26 @@ codigo, useState e funçoes bem alinhadinhos e faceis de ler
 criar um componente com o nome de div so par poder estiliza-lo
 
 alguns metodos que tem no codigo
+
+React-Router-Dom(
+    definir um array com todas as paginas da aplicação
+    path: qual caminho o usuario vai digitar na Url
+    element: qual elemento vai ser carregada de acordo com o o caminho do usuario
+
+    ex:
+    const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Hello world!</div>
+  },
+  {
+    path: '/teste',
+    element: <h1>Teste</h1>
+  }
+  ou seja, quando acessar a url /teste vai exebir outro elemento(componente)
+])
+)
+17:24
+navigate (criamos uma função e adicionamos ela a um botao, dentro do botao colocamos o navigate('com a url que queremos'))
+
+void: ela nao tem retorno nenhum
