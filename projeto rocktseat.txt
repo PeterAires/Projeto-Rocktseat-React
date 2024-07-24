@@ -47,3 +47,10 @@ Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou se
         exemplo: em um botao voce quer onClick, outro onChange e etc
       depois utilizamos o rest operator para salvar todas as propriedados do botao, e ai passamos ele no botao
     agora se quisermos passar Css instalamos a biblioteca tailwind-variants
+      base: '' quais as classes do tailwind que vao ser iguais entre todos os botoes
+      variants:{
+        como eu quero chamar a diferença de um botao pra outro
+      }
+      defalt variantes: {
+        se a variavel nao foi informada qual vai ser o valor que ela vai ter por padrao
+      }

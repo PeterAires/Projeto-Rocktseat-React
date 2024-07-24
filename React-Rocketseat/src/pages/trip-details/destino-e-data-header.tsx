@@ -17,7 +17,7 @@ export function DestinoEDataHeader(){
 
                     <div className="w-px h-6 bg-zinc-800" id="separador"></div>
 
-                    <Button >
+                    <Button variant="secundary">
                         Alterar local/data
                         <Settings2 className='size-5'/>
                     </Button>
