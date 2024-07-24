@@ -35,3 +35,15 @@ React-Router-Dom(
 navigate (criamos uma função e adicionamos ela a um botao, dentro do botao colocamos o navigate('com a url que queremos'))
 
 void: ela nao tem retorno nenhum
+
+Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou seja o <Atividades/> vira <Atividades> entendeu? </Atividades> a / inverte
+  children: uma propriedade do React pra quando eu quero passar um conteudo para o componente: 1:10 
+    exemplo do botao
+    se eu coloco o children apenas como string eu so vou poder passar string
+    Ja se eu coloco ReactNode eu posso passar tudo
+    se quisermos passar um OnClick temos que repassar ele pro componente do botão
+      ai colocamos na interface 'extends ComponentProps<'button'>
+        fazendo isso todas as propriedados que um botao poderia receber no html vai poder ser utilizada
+        exemplo: em um botao voce quer onClick, outro onChange e etc
+      depois utilizamos o rest operator para salvar todas as propriedados do botao, e ai passamos ele no botao
+    agora se quisermos passar Css instalamos a biblioteca tailwind-variants
