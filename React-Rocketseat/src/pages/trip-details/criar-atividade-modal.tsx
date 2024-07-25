@@ -1,4 +1,5 @@
 import { Calendar, Tag, X } from "lucide-react";
+import { Button } from "../../Componentes/button";
 
 interface CriarAtividadeModalProps{
     FecharCriarAtividadeModal: () => void
@@ -41,9 +42,10 @@ export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeM
                                 </div>
                             </div>
                 
-                            <button type='submit' className='bg-lime-300 w-full justify-center text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400'>
+                            
+                            <Button variant="primary" size="full">
                                 Salvar Atividade
-                            </button>
+                            </Button>
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import { ArrowRight, UserRoundPlus, } from 'lucide-react'
+import { Button } from '../../../Componentes/button'
 
 interface InviteConvidadosPassoProps {
     AbrirModalConvidados: () => void
@@ -23,10 +24,11 @@ export function InviteConvidadosPasso({
           </button>
           
             <div className='w-px h-6 bg-zinc-800' />
-  
-            <button onClick={AbrirJanelaDeConfirmarViagem} className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
-            Confirmar Viagem<ArrowRight className='size-5 '/>
-            </button>
+            
+            <Button variant='primary' onClick={AbrirJanelaDeConfirmarViagem}>
+              Confirmar Viagem
+              <ArrowRight className='size-5 '/>
+            </Button>
         </div>
     )
 }

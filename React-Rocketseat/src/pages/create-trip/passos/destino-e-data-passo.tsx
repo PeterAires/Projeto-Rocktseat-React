@@ -1,4 +1,5 @@
 import { MapPin, Calendar, ArrowRight, Settings2,} from 'lucide-react'
+import { Button } from '../../../Componentes/button'
 
 interface DestinoEDataProps {
     janelaDeConvidadoAberta: boolean
@@ -27,12 +28,16 @@ export function DestinoEDataPasso({
             </div>
   
             {janelaDeConvidadoAberta ? (
-              <button onClick={fecharJanelaDeConvidados} className='bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700'>Alterar local/data
-              <Settings2 className='size-5'/></button>
+              <Button variant='secundary' onClick={fecharJanelaDeConvidados}>
+                Alterar local/data
+                <Settings2 className='size-5'/>
+              </Button>
+              
             ) : (
-              <button onClick={abrirJanelaDeConvidados} className='bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400'>
-            Continuar<ArrowRight className='size-5 '/>
-            </button>
+            <Button variant='primary' onClick={abrirJanelaDeConvidados}>
+              Continuar
+              <ArrowRight className='size-5 '/>
+            </Button>
             )}
         </div>
     )

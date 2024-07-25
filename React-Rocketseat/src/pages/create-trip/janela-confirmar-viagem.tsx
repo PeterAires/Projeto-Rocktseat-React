@@ -1,5 +1,6 @@
 import { X, Plus, User} from 'lucide-react'
 import { FormEvent } from 'react'
+import { Button } from '../../Componentes/button'
 
 interface JanelaConfirmarViagem {
     FecharJanelaDeConfirmarViagem: () => void
@@ -19,6 +20,7 @@ export function JanelaConfirmarViagem({
               <button type='button' onClick={FecharJanelaDeConfirmarViagem}>
               <X className='size-5 text-zinc-400'/>
               </button>
+              
           </div>
               <p className='text-sm text-zinc-400'>
                   Para concluir a criação da viagem para <span className='font-semibold text-zinc-100'> Florianopolis, Brasil </span> nas datas de <span className='font-semibold text-zinc-100'>16 a 27 de agosto de 2024</span> preencha abaixo
@@ -43,10 +45,11 @@ export function JanelaConfirmarViagem({
                       placeholder="Seu email"
                       className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
               </div>
-  
-              <button type='submit' className='bg-lime-300 w-full justify-center text-lime-950 rounded-lg px-5 h-11 font-medium flex items-center gap-2 hover:bg-lime-400'>
-                  Confirmar criação da viagem<Plus className='size-5 '/>
-              </button>
+
+              <Button type='submit' size='full' variant='primary'>
+                Confirmar criação da viagem
+                <Plus className='size-5 '/>
+              </Button>
           </form>
       </div>
   </div>

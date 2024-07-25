@@ -1,9 +1,8 @@
-import { MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2, X, AtSign, Plus, User} from 'lucide-react'
 import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { InviteConvidadosModal } from './invite-convidados-modal'
 import { JanelaConfirmarViagem } from './janela-confirmar-viagem'
-import { DestinoEData, DestinoEDataPasso } from './passos/destino-e-data-passo'
+import { DestinoEDataPasso } from './passos/destino-e-data-passo'
 import { InviteConvidadosPasso } from './passos/invite-convidados-passo'
 
 export function CreateTripPage() {
