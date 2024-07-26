@@ -1,9 +1,10 @@
-import { FormEvent, useState } from 'react'
+ import { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { InviteConvidadosModal } from './invite-convidados-modal'
 import { JanelaConfirmarViagem } from './janela-confirmar-viagem'
 import { DestinoEDataPasso } from './passos/destino-e-data-passo'
 import { InviteConvidadosPasso } from './passos/invite-convidados-passo'
+import { DateRange } from 'react-day-picker'
 
 export function CreateTripPage() {
     const navigate = useNavigate()
@@ -13,6 +14,11 @@ export function CreateTripPage() {
     const [janelaDeConfirmarViagemAberta,setJanelaDeConfirmarViagemAberta] = useState(false)
   
     const [emailsParaEnviar,setEmailsParaEnviar] = useState([])
+
+    const [destino,setDestino] = useState()
+    const [usuarioNome,setUsuarioNome] = useState()
+    const [usuarioEmail,setUsuarioEmail] = useState()
+    const [inicioETerminoDoEvendo,setInicioETerminoDoEvendo] = useState<DateRange | undefined>()
   
     function abrirJanelaDeConvidados(){
       setJanelaDeConvidadoAberta(true)
@@ -79,7 +85,8 @@ export function CreateTripPage() {
         <DestinoEDataPasso 
         abrirJanelaDeConvidados={abrirJanelaDeConvidados} 
         fecharJanelaDeConvidados={fecharJanelaDeConvidados} 
-        janelaDeConvidadoAberta={janelaDeConvidadoAberta}/>
+        janelaDeConvidadoAberta={janelaDeConvidadoAberta}
+        setDestino={setDestino}/>
   
         {janelaDeConvidadoAberta && (
           <InviteConvidadosPasso 

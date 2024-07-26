@@ -54,3 +54,7 @@ Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou se
       defalt variantes: {
         se a variavel nao foi informada qual vai ser o valor que ela vai ter por padrao
       }
+
+      bibliotecas do JS
+
+ stateLift
