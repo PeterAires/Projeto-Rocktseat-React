@@ -5,6 +5,7 @@ import { JanelaConfirmarViagem } from './janela-confirmar-viagem'
 import { DestinoEDataPasso } from './passos/destino-e-data-passo'
 import { InviteConvidadosPasso } from './passos/invite-convidados-passo'
 import { DateRange } from 'react-day-picker'
+import { api } from '../../lib/axios'
 
 export function CreateTripPage() {
     const navigate = useNavigate()
@@ -15,9 +16,9 @@ export function CreateTripPage() {
   
     const [emailsParaEnviar,setEmailsParaEnviar] = useState([])
 
-    const [destino,setDestino] = useState()
-    const [usuarioNome,setUsuarioNome] = useState()
-    const [usuarioEmail,setUsuarioEmail] = useState()
+    const [destino,setDestino] = useState('')
+    const [usuarioNome,setUsuarioNome] = useState('')
+    const [usuarioEmail,setUsuarioEmail] = useState('')
     const [inicioETerminoDoEvendo,setInicioETerminoDoEvendo] = useState<DateRange | undefined>()
   
     function abrirJanelaDeConvidados(){
@@ -72,7 +73,15 @@ export function CreateTripPage() {
 
     function createTrip(event: FormEvent<HTMLFormElement>){
       event.preventDefault()
-      navigate('/trips/123')
+
+      console.log(usuarioEmail)
+      console.log(usuarioNome)
+      console.log(destino)
+      console.log(inicioETerminoDoEvendo)
+      console.log(emailsParaEnviar)
+
+      api.post
+     //navigate('/trips/123')
     }
   
     return (
@@ -83,6 +92,8 @@ export function CreateTripPage() {
       <div className='space-y-4'>
   
         <DestinoEDataPasso 
+        inicioETerminoDoEvendo={inicioETerminoDoEvendo}
+        setInicioETerminoDoEvendo={setInicioETerminoDoEvendo}
         abrirJanelaDeConvidados={abrirJanelaDeConvidados} 
         fecharJanelaDeConvidados={fecharJanelaDeConvidados} 
         janelaDeConvidadoAberta={janelaDeConvidadoAberta}
@@ -113,7 +124,9 @@ export function CreateTripPage() {
       {janelaDeConfirmarViagemAberta &&(
         <JanelaConfirmarViagem 
         FecharJanelaDeConfirmarViagem={FecharJanelaDeConfirmarViagem} 
-        createTrip={createTrip}/>
+        createTrip={createTrip}
+        setUsuarioEmail={setUsuarioEmail}
+        setUsuarioNome={setUsuarioNome}/>
       )}
     </div>
     )

@@ -5,11 +5,15 @@ import { Button } from '../../Componentes/button'
 interface JanelaConfirmarViagem {
     FecharJanelaDeConfirmarViagem: () => void
     createTrip: (event: FormEvent<HTMLFormElement>) => void
+    setUsuarioNome: (Nome: string) => void
+    setUsuarioEmail: (Email: string) => void
 }   
 
 export function JanelaConfirmarViagem({
     FecharJanelaDeConfirmarViagem,
-    createTrip
+    createTrip,
+    setUsuarioNome,
+    setUsuarioEmail
     }: JanelaConfirmarViagem) {
     return(
       <div className='fixed inset-0 bg-black/60 flex items-center justify-center '>
@@ -32,6 +36,7 @@ export function JanelaConfirmarViagem({
               <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
                   <User className='text-zinc-400 size-5'/>
                   <input
+                      onChange={(e) => setUsuarioNome(e.target.value)}
                       name='name'
                       placeholder="Seu nome completo"
                       className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
@@ -40,6 +45,7 @@ export function JanelaConfirmarViagem({
               <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
                   <User className='text-zinc-400 size-5'/>
                   <input
+                      onChange={(e) => setUsuarioEmail(e.target.value)}
                       type='email'
                       name='email'
                       placeholder="Seu email"

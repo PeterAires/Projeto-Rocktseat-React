@@ -10,6 +10,8 @@ interface DestinoEDataProps {
     fecharJanelaDeConvidados: () => void
     abrirJanelaDeConvidados: () => void
     setDestino: (destino: string) => void
+    inicioETerminoDoEvendo: DateRange | undefined
+    setInicioETerminoDoEvendo: (data: DateRange | undefined) => void
 }
 
 
@@ -17,11 +19,13 @@ export function DestinoEDataPasso({
     janelaDeConvidadoAberta,
     fecharJanelaDeConvidados,
     abrirJanelaDeConvidados,
-    setDestino
+    setDestino,
+    setInicioETerminoDoEvendo,
+    inicioETerminoDoEvendo,
 }: DestinoEDataProps){
 
   const [dataPickerAberto,setDataPickerAberto] = useState(false)
-  const [inicioETerminoDoEvendo,setInicioETerminoDoEvendo] = useState<DateRange | undefined>()
+  
 
   function AbrirDataPicker(){
     return setDataPickerAberto(true)
