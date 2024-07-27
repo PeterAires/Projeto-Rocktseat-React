@@ -89,7 +89,7 @@ export function CreateTripPage() {
       if(emailsParaEnviar.length === 0) {
         return
       }
-      if(usuarioNome || usuarioEmail) {
+      if(!usuarioNome || !usuarioEmail) {
         return
       }
 
