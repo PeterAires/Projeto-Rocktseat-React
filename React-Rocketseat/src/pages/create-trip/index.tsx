@@ -71,7 +71,7 @@ export function CreateTripPage() {
       setEmailsParaEnviar(novalistadeEmail)
     }
 
-    function createTrip(event: FormEvent<HTMLFormElement>){
+    async function createTrip(event: FormEvent<HTMLFormElement>){
       event.preventDefault()
 
       console.log(usuarioEmail)
@@ -80,8 +80,30 @@ export function CreateTripPage() {
       console.log(inicioETerminoDoEvendo)
       console.log(emailsParaEnviar)
 
-      api.post
-     //navigate('/trips/123')
+      if (!destino) {
+        return
+      }
+      if (!inicioETerminoDoEvendo?.from || !inicioETerminoDoEvendo?.to){
+        return
+      }
+      if(emailsParaEnviar.length === 0) {
+        return
+      }
+      if(usuarioNome || usuarioEmail) {
+        return
+      }
+
+      const resposta = await api.post('/trips', {
+        destination: destino,
+        starts_at: inicioETerminoDoEvendo.from,
+        ends_at: inicioETerminoDoEvendo.to,
+        emails_to_invite: emailsParaEnviar,
+        owner_name: usuarioNome,
+        owner_email: usuarioEmail,
+      })
+
+      const { tripId } = resposta.data
+      navigate(`/trips/${tripId}`)
     }
   
     return (

@@ -57,4 +57,12 @@ Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou se
 
       bibliotecas do JS
 
- stateLift
+ stateLift (elevao os useStates a componentes)
+
+ Axios (
+    instalamos o Axios, criamos um documentos e colocamos axios.create({baseURL: nossa porta atual}) em uma variavel
+
+    é importante ler a documentação da Api pois ela vai explicar como tem que ser os metodos e como voce tem que enviar
+
+    validação, processo de verificação se todas as informações do usuario estaao corretar, if, else e etc
+ )
