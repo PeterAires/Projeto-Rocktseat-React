@@ -1,7 +1,13 @@
 import { Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../Componentes/button";
+import { useParams } from "react-router-dom";
+
 
 export function DestinoEDataHeader(){
+    const params = useParams()
+
+    console.log(params)
+
     return(
         <div className="px-4 h-16 rounded-xl bg-zinc-900 shadow-shape flex items-center justify-between">
                 <div className="flex items-center gap-2">

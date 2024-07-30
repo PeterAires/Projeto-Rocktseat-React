@@ -16,9 +16,9 @@ export function CreateTripPage() {
   
     const [emailsParaEnviar,setEmailsParaEnviar] = useState([])
 
-    const [destino,setDestino] = useState('')
-    const [usuarioNome,setUsuarioNome] = useState('')
-    const [usuarioEmail,setUsuarioEmail] = useState('')
+    const [destination,setDestino] = useState()
+    const [usuarioNome,setUsuarioNome] = useState()
+    const [usuarioEmail,setUsuarioEmail] = useState()
     const [inicioETerminoDoEvendo,setInicioETerminoDoEvendo] = useState<DateRange | undefined>()
   
     function abrirJanelaDeConvidados(){
@@ -76,11 +76,11 @@ export function CreateTripPage() {
 
       console.log(usuarioEmail)
       console.log(usuarioNome)
-      console.log(destino)
+      console.log(destination)
       console.log(inicioETerminoDoEvendo)
       console.log(emailsParaEnviar)
 
-      if (!destino) {
+      if (!destination) {
         return
       }
       if (!inicioETerminoDoEvendo?.from || !inicioETerminoDoEvendo?.to){
@@ -94,12 +94,12 @@ export function CreateTripPage() {
       }
 
       const resposta = await api.post('/trips', {
-        destination: destino,
+        destination,
         starts_at: inicioETerminoDoEvendo.from,
         ends_at: inicioETerminoDoEvendo.to,
         emails_to_invite: emailsParaEnviar,
         owner_name: usuarioNome,
-        owner_email: usuarioEmail,
+        owner_email: usuarioEmail
       })
 
       const { tripId } = resposta.data
