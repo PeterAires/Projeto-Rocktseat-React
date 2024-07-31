@@ -1,7 +1,8 @@
 import { Calendar, Tag, X } from "lucide-react";
 import { Button } from "../../Componentes/button";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { api } from "../../lib/axios";
+import { useParams } from "react-router-dom";
 
 interface CriarAtividadeModalProps{
     FecharCriarAtividadeModal: () => void
@@ -9,15 +10,20 @@ interface CriarAtividadeModalProps{
 
 export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeModalProps){
 
-    function criarAtividade (event: FormEvent<HTMLFormElement>) {
-        event.preventDefault
+    const    tripId   = useParams()
+    async function criarAtividade (event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
 
         const dados = new FormData(event.currentTarget)
 
-        const titulo = dados.get('titulo')?.toString()
-        const dataEHorario = dados.get('dataEHorario')?.toString()
+        const title = dados.get('title')?.toString()
+        const occurs_at = dados.get('occurs_at')?.toString()
 
-        api.post('')
+        await api.post(`/trips/${tripId.tripid}/activities`, {
+            occurs_at,
+            title,
+        })
+        FecharCriarAtividadeModal()
     }
 
     return(
@@ -40,7 +46,7 @@ export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeM
                             <div className='h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
                                 <Tag className='text-zinc-400 size-5'/>
                                 <input
-                                    name='titulo'
+                                    name='title'
                                     placeholder="Qual a atividade?"
                                     className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"/>
                             </div>
@@ -50,7 +56,7 @@ export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeM
                                     <Calendar className='text-zinc-400 size-5'/>
                                     <input
                                         type='datetime-local'
-                                        name='dataEHorario'
+                                        name='occurs_at'
                                         placeholder="Data e horário da atividade"
                                         className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1 "/>
                                 </div>
