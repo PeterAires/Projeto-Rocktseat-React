@@ -66,3 +66,5 @@ Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou se
 
     validação, processo de verificação se todas as informações do usuario estaao corretar, if, else e etc
  )
+
+ useParams retorna todos os parametros que temos na URL

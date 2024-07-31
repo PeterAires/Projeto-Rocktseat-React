@@ -102,6 +102,7 @@ export function CreateTripPage() {
         owner_email: usuarioEmail
       })
 
+
       const { tripId } = resposta.data
       navigate(`/trips/${tripId}`)
     }
