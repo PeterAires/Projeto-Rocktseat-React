@@ -23,8 +23,6 @@ export function Atividades(){
         api.get(`/trips/${tripId.tripid}/activities`).then(response => setActivities(response.data.activities))
     }, [tripId])
 
-
-    console.log(activities)
     return(
     <div className="space-y-8">
         {activities.map((index) => (

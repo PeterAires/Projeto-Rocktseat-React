@@ -68,3 +68,6 @@ Mas primeiro pro o que esta abaixo acontecer devemos dividir o componente, ou se
  )
 
  useParams retorna todos os parametros que temos na URL
+
+ definiu interface quando deu um Get ou pegando props, pra post
+ ele nao usou
