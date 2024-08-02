@@ -3,6 +3,7 @@ import { Button } from "../../Componentes/button";
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { useParams } from "react-router-dom";
+import { CadastrarNovoConvidado } from "./cadastrar-novo-convidado";
 
 interface Participantes {
     id: string
@@ -15,10 +16,18 @@ export function Convidados(){
 
     const   tripId   = useParams()
     const [users, setUsers] = useState<Participantes[]>([])
+    const[GerenciarConvidadoAberto,setGerenciarConvidadoAberto] = useState(false)
 
     useEffect(() => {
         api.get(`/trips/${tripId.tripid}/participants`).then(response => setUsers(response.data.participants))
     }, [tripId])
+
+    function AbrirGerenciarConvidadoModal() {
+        setGerenciarConvidadoAberto(true)
+    }
+    function FecharGerenciarConvidadoModa() {
+        setGerenciarConvidadoAberto(false)
+    }
 
 
     return(
@@ -37,10 +46,13 @@ export function Convidados(){
                                 : <CircleDashed className="text-zinc-400 size-5 shrink-0"/>}
                             </div>))}
                         </div>
-                        <Button variant="secundary" size="full">
+                        <Button onClick={AbrirGerenciarConvidadoModal} variant="secundary" size="full">
                             <UserCog className='size-5' />  
                             Gerenciar Convidados
                         </Button>
+                        {GerenciarConvidadoAberto && (
+                            <CadastrarNovoConvidado FecharGerenciarConvidadoModa={FecharGerenciarConvidadoModa}/>
+                        )}
                     </div>
     )
 }

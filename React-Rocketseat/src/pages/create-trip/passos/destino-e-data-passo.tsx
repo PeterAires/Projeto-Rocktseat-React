@@ -12,6 +12,7 @@ interface DestinoEDataProps {
     setDestino: (destino: string) => void
     inicioETerminoDoEvendo: DateRange | undefined
     setInicioETerminoDoEvendo: (data: DateRange | undefined) => void
+    destination: () => void
 }
 
 
@@ -22,6 +23,7 @@ export function DestinoEDataPasso({
     setDestino,
     setInicioETerminoDoEvendo,
     inicioETerminoDoEvendo,
+    destination,
 }: DestinoEDataProps){
 
   const [dataPickerAberto,setDataPickerAberto] = useState(false)

@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Repeat2, Settings2, X } from "lucide-react"
+import { Calendar, MapPin, Repeat2, X } from "lucide-react"
 import { useState } from "react"
 import { DateRange, DayPicker } from "react-day-picker"
 import { Button } from "../../Componentes/button";
@@ -55,21 +55,24 @@ export function AlterarDestinoEData ({fecharAlterarLocalEData}:AlterarDestinoEDa
             <div className='space-y-2'>
             <div className='flex items-center justify-between'>
                 <h2 className='text-lg font-semibold'>Alterarar local/data</h2> 
+                <button onClick={fecharAlterarLocalEData} type='button' >
+                  <X className='size-5 text-zinc-400'/>
+                </button>
             </div>
                 <p className='text-sm text-zinc-400'>
                     Todos convidados podem visualizar o local e data.
                 </p>
             </div>
                 
-        
- 
             <div className="px-4 h-16 rounded-xl bg-zinc-800 shadow-shape flex items-center justify-between">
+              
                 <div className="flex items-center gap-2 flex-1">
+                  
                     <MapPin className="size-5 text-zinc-400"/>
                     <input onChange={(e) => setDestination(e.target.value)}
                     type="text" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" placeholder="onde?" />
                 </div>
-
+              
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
                        <Button variant="secundary" onClick={abrirDayPicker}>

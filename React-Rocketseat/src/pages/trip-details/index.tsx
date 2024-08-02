@@ -9,6 +9,7 @@ import { Button } from "../../Componentes/button";
 
 export function TripDetailsPage() {
     const[criarAtividadeModalAberta,setCriarAtividadeModalAberta] = useState(false)
+    
 
     function AbrirCriarAtividadeModal() {
         setCriarAtividadeModalAberta(true)
@@ -16,6 +17,7 @@ export function TripDetailsPage() {
     function FecharCriarAtividadeModal() {
         setCriarAtividadeModalAberta(false)
     }
+
 
     return (
         <div className="max-w-6xl px-24 py-10 mx-auto space-y-8">
@@ -29,6 +31,9 @@ export function TripDetailsPage() {
                             <Plus className='size-5 '/>
                             Cadastrar atividade
                         </Button>
+                        {criarAtividadeModalAberta &&(
+                         <CriarAtividadeModal FecharCriarAtividadeModal={FecharCriarAtividadeModal}/>
+                         )} 
                     </div>
                     <Atividades/>
                 </div>
@@ -38,10 +43,7 @@ export function TripDetailsPage() {
                     <div className="w=full h-px bg-zinc-800"></div>
                     <Convidados/>
                 </div>
-            </main>
-            {criarAtividadeModalAberta &&(
-                <CriarAtividadeModal FecharCriarAtividadeModal={FecharCriarAtividadeModal}/>
-            )}     
+            </main>    
         </div>
     )
 }
