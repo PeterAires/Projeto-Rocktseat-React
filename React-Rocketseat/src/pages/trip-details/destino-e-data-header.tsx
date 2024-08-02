@@ -1,9 +1,10 @@
 import { Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../Componentes/button";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import { format } from 'date-fns'
+import { AlterarDestinoEData } from "./alterar-destino-e-data";
 
 
 interface Trip {
@@ -16,6 +17,7 @@ interface Trip {
 
 export function DestinoEDataHeader(){
 
+    const [abrirAlterarLocalEData,setAbrirAlterarLocalEData] = useState(false)    
     const   tripId   = useParams()
     const [trip, setTrip] = useState<Trip | undefined>()
 
@@ -27,8 +29,11 @@ export function DestinoEDataHeader(){
         ? format(trip.starts_at, "d' de 'LLL" ).concat(' até ').concat(format(trip.ends_at, "d' de 'LLL" ))
         : null
 
-    function voltarAlterarLocalEData(){
-       
+    function atualizarAlterarLocalEData(){
+        setAbrirAlterarLocalEData(true)
+    }
+    function fecharAlterarLocalEData(){
+        setAbrirAlterarLocalEData(false)
     }
 
     return(
@@ -46,11 +51,13 @@ export function DestinoEDataHeader(){
 
                     <div className="w-px h-6 bg-zinc-800" id="separador"></div>
 
-                    <Button onClick={voltarAlterarLocalEData} variant="secundary">
+                    <Button onClick={atualizarAlterarLocalEData} variant="secundary">
                         Alterar local/data
                         <Settings2 className='size-5'/>
                     </Button>
-                    
+                    {abrirAlterarLocalEData&& (
+                        <AlterarDestinoEData fecharAlterarLocalEData={fecharAlterarLocalEData}/>
+                    )}
                 </div>
             </div>
     )
