@@ -29,6 +29,7 @@ export function InviteConvidadosModal({
               <p className='text-sm text-zinc-400'>
                 Os convidados irão receber emails para a confirmação da participação da viagem
               </p>
+              <div id='errConvidados'></div>
               </div>
               <div className='flex flex-wrap gap-2'>
                 {emailsParaEnviar.map((email) => (

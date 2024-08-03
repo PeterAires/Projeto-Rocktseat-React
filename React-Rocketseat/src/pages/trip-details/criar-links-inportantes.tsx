@@ -23,11 +23,20 @@ export function CriarLinkModal({
         const title = dados.get('title')?.toString()
         const url = dados.get('url')?.toString()
     
+        if(title?.length === 0){
+            alert('Nome não informado.')
+            return
+        }
+        if(url?.length === 0){
+            alert('Url não informada.')
+            return
+        }
+
         await api.post(`/trips/${tripId.tripid}/links`, {
             title,
             url,
         })
-        
+        window.document.location.reload()
     }
 
 
@@ -60,7 +69,7 @@ export function CriarLinkModal({
                                         <div className='h-14 flex-1 x-1 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2'>
                                             <Link2 className='text-zinc-400 size-5'/>
                                             <input
-                                                type='text'
+                                                type='url'
                                                 name='url'
                                                 placeholder="Url"
                                                 className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1 "/>

@@ -29,6 +29,7 @@ export function JanelaConfirmarViagem({
               <p className='text-sm text-zinc-400'>
                   Para concluir a criação da viagem para <span className='font-semibold text-zinc-100'> Florianopolis, Brasil </span> nas datas de <span className='font-semibold text-zinc-100'>16 a 27 de agosto de 2024</span> preencha abaixo
               </p>
+              <div id='errCriacaoViagem'></div>
           </div>
               
   

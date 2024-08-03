@@ -67,7 +67,9 @@ export function DestinoEDataPasso({
                   <button type='button' onClick={FecharDataPicker}>
                     <X className='size-5 text-zinc-400'/>
                   </button>
-                  
+                </div>
+                <div className='flex items-center justify-between text-sm'>
+                  Apenas datas após o dia atual.
                 </div>
               </div>
               

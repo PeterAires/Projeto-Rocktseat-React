@@ -30,7 +30,6 @@ export function LinksImportantes(){
         api.get(`/trips/${tripId.tripid}/links`).then(response => setLinks(response.data.links))
     }, [tripId])
     
-    console.log(links)
 
     return(
         <div className="space-y-6">

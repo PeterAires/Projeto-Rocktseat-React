@@ -29,11 +29,14 @@ export function AlterarDestinoEData ({fecharAlterarLocalEData}:AlterarDestinoEDa
     
     const    tripId   = useParams()
 
-    async function createTrip(){
-        console.log(destination)
-        console.log(inicioETerminoDoEvendo)       
-  
+    async function createTrip(){     
+      
         if (!destination) {
+          alert('O destino não foi informado')
+          return
+        }
+        if(destination.length < 4){
+          alert('O destino deve ter no mínimo 4 caracteres.')
           return
         }
         if (!inicioETerminoDoEvendo?.from || !inicioETerminoDoEvendo?.to){
@@ -44,9 +47,9 @@ export function AlterarDestinoEData ({fecharAlterarLocalEData}:AlterarDestinoEDa
           destination,
           starts_at: inicioETerminoDoEvendo.from,
           ends_at: inicioETerminoDoEvendo.to,
-        })
-        fecharAlterarLocalEData
-        window.document.location.reload()
+        }).catch(() => (alert('Selecione uma data posterior ao dia atual.'))).then(() => {fecharAlterarLocalEData
+          window.document.location.reload()})
+        
     }
 
     return(
@@ -62,6 +65,7 @@ export function AlterarDestinoEData ({fecharAlterarLocalEData}:AlterarDestinoEDa
                 <p className='text-sm text-zinc-400'>
                     Todos convidados podem visualizar o local e data.
                 </p>
+                <div id="errPutLocalEData"></div>
             </div>
                 
             <div className="px-4 h-16 rounded-xl bg-zinc-800 shadow-shape flex items-center justify-between">
@@ -88,7 +92,7 @@ export function AlterarDestinoEData ({fecharAlterarLocalEData}:AlterarDestinoEDa
                                     <button type='button' onClick={fecharDataPicker}>
                                       <X className='size-5 text-zinc-400'/>
                                     </button>
-                                    
+  
                                   </div>
                                 </div>
                                 

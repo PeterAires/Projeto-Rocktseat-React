@@ -20,11 +20,20 @@ export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeM
 
         const title = dados.get('title')?.toString()
         const occurs_at = dados.get('occurs_at')?.toString()
+        if (title?.length === 0) {
+            alert('Titulo da tarefa não informado.')
+            return
+        }
+        if (occurs_at?.length === 0) {
+            alert('Data da tarefa não informada')
+            return
+        }
 
         await api.post(`/trips/${tripId.tripid}/activities`, {
             occurs_at,
             title,
-        })
+        }).catch(() => {alert('Data invalida, selecione apenas dias condizentes com a data informada') 
+            return})
         window.document.location.reload()
     }
 
@@ -40,6 +49,9 @@ export function CriarAtividadeModal({FecharCriarAtividadeModal}: CriarAtividadeM
                         </div>
                             <p className='text-sm text-zinc-400'>
                                 Todos convidados podem visualizar as atividades.
+                            </p>
+                            <p className="text-sm text-zinc-200">
+                            Selecione apenas dias condizentes com a data informada.
                             </p>
                         </div>
                             

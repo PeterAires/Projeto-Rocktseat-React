@@ -4,8 +4,10 @@ import { InviteConvidadosModal } from './invite-convidados-modal'
 import { JanelaConfirmarViagem } from './janela-confirmar-viagem'
 import { DestinoEDataPasso } from './passos/destino-e-data-passo'
 import { InviteConvidadosPasso } from './passos/invite-convidados-passo'
-import { DateRange } from 'react-day-picker'
+import { DateRange, Day } from 'react-day-picker'
 import { api } from '../../lib/axios'
+import { ErrorComponent } from '../../Componentes/component-error'
+import { getDay } from 'date-fns';
 
 export function CreateTripPage() {
     const navigate = useNavigate()
@@ -20,9 +22,28 @@ export function CreateTripPage() {
     const [usuarioNome,setUsuarioNome] = useState()
     const [usuarioEmail,setUsuarioEmail] = useState()
     const [inicioETerminoDoEvendo,setInicioETerminoDoEvendo] = useState<DateRange | undefined>()
+
+
   
+
+
     function abrirJanelaDeConvidados(){
-      setJanelaDeConvidadoAberta(true)
+      if (!inicioETerminoDoEvendo?.from ||!inicioETerminoDoEvendo?.to) {
+        const error = window.document.getElementById('error')
+        error.innerHTML = 'Selecione a data da viagem.'
+        return
+      }
+      
+      if (destination.length >= 4) {
+        setJanelaDeConvidadoAberta(true)
+        const error = window.document.getElementById('error')
+       error.innerHTML = ''
+      }
+      else {
+       const error = window.document.getElementById('error')
+       error.innerHTML = 'O destino deve ter no mínimo 4 caracteres'
+        return
+      }
     }
   
     function fecharJanelaDeConvidados(){
@@ -37,7 +58,16 @@ export function CreateTripPage() {
     }
   
     function AbrirJanelaDeConfirmarViagem(){
-      setJanelaDeConfirmarViagemAberta(true)
+      if (emailsParaEnviar.length === 0){
+        const error = window.document.getElementById('error')
+       error.innerHTML = 'Nenhum convidado adicionado.'
+       return
+      }
+      else{
+        const error = window.document.getElementById('error')
+       error.innerHTML = ''
+        setJanelaDeConfirmarViagemAberta(true)
+      }
     }
     function FecharJanelaDeConfirmarViagem(){
       setJanelaDeConfirmarViagemAberta(false)
@@ -54,9 +84,14 @@ export function CreateTripPage() {
         }
   
       if (emailsParaEnviar.includes(email)) { //se ja tiver o email que on cara clikou no array ele retorna
+        const error = window.document.getElementById('errConvidados')
+       error.innerHTML = 'Convidado já adicionado.'
         return
       }
-  
+      else{
+        const error = window.document.getElementById('errConvidados')
+       error.innerHTML = ''
+      }
       setEmailsParaEnviar([
         ...emailsParaEnviar,
         email
@@ -74,18 +109,19 @@ export function CreateTripPage() {
     async function createTrip(event: FormEvent<HTMLFormElement>){
       event.preventDefault()
 
-      if (!destination) {
+      
+      if (!inicioETerminoDoEvendo?.from || !inicioETerminoDoEvendo?.to){
+        alert('As datas não foram informadas corretamente.')
+        return
+      }
+  
+      if(!usuarioNome || !usuarioEmail) {
+        alert('Nome e/ou email não informados.')
         
         return
       }
-      if (!inicioETerminoDoEvendo?.from || !inicioETerminoDoEvendo?.to){
-        return
-      }
-      if(emailsParaEnviar.length === 0) {
-        return
-      }
-      if(!usuarioNome || !usuarioEmail) {
-        return
+      else {
+        
       }
 
       const resposta = await api.post('/trips', {
@@ -95,7 +131,7 @@ export function CreateTripPage() {
         emails_to_invite: emailsParaEnviar,
         owner_name: usuarioNome,
         owner_email: usuarioEmail
-      })
+      }).catch(() => (alert('Data invalida. Selecione uma data posterior ao dia atual.')))
 
 
       const { tripId } = resposta.data
@@ -106,7 +142,7 @@ export function CreateTripPage() {
     <div className="h-screen flex items-center justify-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
         <p className="text-zinc-300 text-lg">Convide seus amigos e planeje sua proxima viagem!</p>
-  
+        <div id='error'></div>
       <div className='space-y-4'>
   
         <DestinoEDataPasso 

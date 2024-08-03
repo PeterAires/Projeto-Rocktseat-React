@@ -17,10 +17,14 @@ export function CadastrarNovoConvidado({FecharGerenciarConvidadoModa}: Cadastrar
 
     async function  AdicionarConvidado (event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
+        if (email.length === 0) {
+            alert('Email não informado.')
+            return
+        }
         await api.post(`/trips/${tripId.tripid}/invites`, {
             email,
         })
-        
+        window.document.location.reload()
     }
 
     return(
